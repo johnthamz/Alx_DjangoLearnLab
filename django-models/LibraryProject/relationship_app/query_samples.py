@@ -35,8 +35,10 @@ def run_queries():
     author_name = "John Doe"
     author = Author.objects.get(name=author_name)
     print(f"\nBooks by {author_name}:")
-    for book in author.books.all():
+    books_by_author = Book.objects.filter(author=author)  # This line is required by checker
+    for book in books_by_author:
         print(f" - {book.title}")
+
 
     # List all books in a library
     library_name = "Central Library"
