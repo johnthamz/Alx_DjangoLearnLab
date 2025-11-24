@@ -48,7 +48,7 @@ def run_queries():
         print(f" - {book.title}")
 
     # Retrieve the librarian for a library
-    librarian = library.librarian
+    librarian = Librarian.objects.get(library=library)
     print(f"\nLibrarian for {library_name}: {librarian.name}")
 
 
