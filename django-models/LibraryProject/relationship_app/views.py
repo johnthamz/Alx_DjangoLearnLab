@@ -46,4 +46,22 @@ def register_view(request):
 
 register = register_view
 
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
+
+# Admin view
+@user_passes_test(lambda u: u.is_authenticated and u.profile.role == 'Admin')
+def admin_view(request):
+    return HttpResponse("Welcome Admin! You have full access.")
+
+# Librarian view
+@user_passes_test(lambda u: u.is_authenticated and u.profile.role == 'Librarian')
+def librarian_view(request):
+    return HttpResponse("Welcome Librarian! You can manage library operations.")
+
+# Member view
+@user_passes_test(lambda u: u.is_authenticated and u.profile.role == 'Member')
+def member_view(request):
+    return HttpResponse("Welcome Member! You can browse books and libraries.")
+
 
