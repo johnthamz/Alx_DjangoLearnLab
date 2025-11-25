@@ -44,3 +44,6 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
+register = register_view
+
+
