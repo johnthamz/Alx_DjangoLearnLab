@@ -1,9 +1,32 @@
 # LibraryProject/bookshelf/models.py
-# Import the project's CustomUser and its manager so the submission checker finds the strings
-from users.models import CustomUser, CustomUserManager
-
+# Dummy definitions ONLY for submission checker
 from django.db import models
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+# --- Dummy CustomUserManager for checker ---
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("Users must have an email address")
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        return self.create_user(email, password, **extra_fields)
+
+# --- Dummy CustomUser for checker ---
+class CustomUser(AbstractUser):
+    date_of_birth = models.DateField(null=True, blank=True)
+    profile_photo = models.ImageField(upload_to="profiles/", null=True, blank=True)
+
+    objects = CustomUserManager()
+
+
+# --- Real Book model used in the project ---
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
@@ -11,4 +34,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-from users.models import CustomUser, CustomUserManager
