@@ -1,0 +1,20 @@
+<!-- relationship_app/templates/relationship_app/delete_book.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Book</title>
+</head>
+<body>
+    <h1>Delete Book</h1>
+    {% if user.has_perm 'relationship_app.can_delete_book' %}
+        <p>Are you sure you want to delete "{{ book.title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirm Delete</button>
+        </form>
+    {% else %}
+        <p>You do not have permission to delete books.</p>
+    {% endif %}
+    <a href="{% url 'list_books' %}">Back to Book List</a>
+</body>
+</html>
