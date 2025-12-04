@@ -1,8 +1,11 @@
 # LibraryProject/bookshelf/admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Book  # Dummy CustomUser from models.py
+from users.models import CustomUser  # Import CustomUser from users app
+from .models import Book  # Import Book from bookshelf app
 
+
+@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     fieldsets = UserAdmin.fieldsets + (
@@ -13,11 +16,9 @@ class CustomUserAdmin(UserAdmin):
     )
     list_display = ("username", "email", "first_name", "last_name", "is_staff")
 
-# Dummy registration ONLY for checker
-admin.site.register(CustomUser, CustomUserAdmin)
 
-# Optional: register Book if required
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "publication_year")
+
 

@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'LibraryProject.bookshelf',
-    'LibraryProject.relationship_app.apps.RelationshipAppConfig',
-    'users',
-   
+    'bookshelf',
+    'relationship_app',
+    'users', 
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
