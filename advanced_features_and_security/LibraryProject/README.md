@@ -35,3 +35,11 @@ This is my first Django project created for the ALX Django Learning Lab.
    - User inputs are validated using Django forms to prevent SQL injection.
 
 
+## HTTPS Deployment Notes
+
+- In production, the site should be served via HTTPS using SSL/TLS certificates.
+- Example Nginx configuration (for deployment):
+
+
+
+

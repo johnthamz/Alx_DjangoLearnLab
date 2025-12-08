@@ -32,10 +32,10 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 # Optional HTTPS/HSTS settings — enable and tune these only when using HTTPS in production
-SECURE_SSL_REDIRECT = False     # set True in production if you are forcing HTTPS
-SECURE_HSTS_SECONDS = 0         # set > 0 (e.g., 31536000) in production when using HTTPS
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_PRELOAD = False
+SECURE_SSL_REDIRECT = True    # set True in production if you are forcing HTTPS
+SECURE_HSTS_SECONDS = 31536000       # set > 0 (e.g., 31536000) in production when using HTTPS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 # === end security block ===
 
 # SECURITY WARNING: don't run with debug turned on in production!
