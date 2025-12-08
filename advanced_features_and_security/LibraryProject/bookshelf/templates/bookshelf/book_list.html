@@ -2,9 +2,15 @@
 
 {% block content %}
 <h1>Books</h1>
+
+<form method="get" action="">
+    {{ form.q }}
+    <button type="submit">Search</button>
+</form>
+
 <a href="{% url 'bookshelf:book_add' %}">Add New Book</a>
 <ul>
-    {% for book in object_list %}
+    {% for book in books %}
     <li>
         {{ book.title }} by {{ book.author }} ({{ book.publication_year }})
         <a href="{% url 'bookshelf:book_edit' book.pk %}">Edit</a>
@@ -15,4 +21,3 @@
     {% endfor %}
 </ul>
 {% endblock %}
-

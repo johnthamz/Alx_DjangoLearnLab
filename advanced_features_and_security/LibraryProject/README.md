@@ -15,3 +15,23 @@ This is my first Django project created for the ALX Django Learning Lab.
 1. Create users and assign them to the appropriate group.
 2. Log in and test that access is enforced according to group permissions.
 
+
+
+## Security Measures Implemented
+
+1. CSRF Protection
+   - All forms use {% csrf_token %} to prevent cross-site request forgery.
+2. Content Security Policy (CSP)
+   - Middleware adds CSP header to block scripts/styles/images from untrusted sources.
+3. XSS and Clickjacking Protection
+   - SECURE_BROWSER_XSS_FILTER=True
+   - X_FRAME_OPTIONS='DENY'
+   - SECURE_CONTENT_TYPE_NOSNIFF=True
+4. Secure Cookies
+   - CSRF_COOKIE_SECURE=True
+   - SESSION_COOKIE_SECURE=True
+5. Safe Data Access
+   - All queries use Django ORM.
+   - User inputs are validated using Django forms to prevent SQL injection.
+
+

@@ -22,10 +22,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-5p_zl#75tnue!e-f_trtubx71@+&7*$)ruvbe07^7hfbnum5b$'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Browser-level protections
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
-ALLOWED_HOSTS = []
+# Cookies should be sent only over HTTPS in production
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Optional HTTPS/HSTS settings — enable and tune these only when using HTTPS in production
+SECURE_SSL_REDIRECT = False     # set True in production if you are forcing HTTPS
+SECURE_HSTS_SECONDS = 0         # set > 0 (e.g., 31536000) in production when using HTTPS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+# === end security block ===
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -45,7 +61,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 
 MIDDLEWARE = [
+   
     'django.middleware.security.SecurityMiddleware',
+    'LibraryProject.middleware.ContentSecurityPolicyMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
