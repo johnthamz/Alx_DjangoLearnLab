@@ -41,6 +41,9 @@ SECURE_HSTS_PRELOAD = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# Secure proxy header to detect HTTPS behind a reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
