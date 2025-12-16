@@ -11,6 +11,12 @@ from .views import (
     profile_view,
 )
 
+from .views import (
+    CommentCreateView,
+    CommentUpdateView,
+    CommentDeleteView,
+)
+
 urlpatterns = [
     # Home page (optional, but keeps your project working)
     path("", PostListView.as_view(), name="home"),
@@ -21,6 +27,11 @@ urlpatterns = [
     path("post/<int:pk>/", PostDetailView.as_view(), name="post-detail"),
     path("post/<int:pk>/update/", PostUpdateView.as_view(), name="post-update"),
     path("post/<int:pk>/delete/", PostDeleteView.as_view(), name="post-delete"),
+    
+    # Comment URLs
+    path("post/<int:pk>/comments/new/", CommentCreateView.as_view(), name="comment-create"),
+    path("comments/<int:pk>/update/", CommentUpdateView.as_view(), name="comment-update"),
+    path("comments/<int:pk>/delete/", CommentDeleteView.as_view(), name="comment-delete"),
 
     # Authentication
     path("register/", register_view, name="register"),

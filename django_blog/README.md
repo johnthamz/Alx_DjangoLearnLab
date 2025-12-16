@@ -62,3 +62,24 @@ The following templates are used:
 
 ## Notes
 This project uses Django class-based views for clean, reusable, and scalable code.
+
+
+## Comment System
+
+A comment system that allows users to interact with blog posts.
+
+### Features
+- View comments under each blog post
+- Authenticated users can add comments
+- Comment authors can edit or delete their comments
+
+### Technical Details
+- Each comment is linked to a specific blog post using a ForeignKey
+- Permissions are enforced so only comment authors can modify their comments
+- Django generic class-based views are used for CRUD operations
+- CSRF protection is enabled for all comment forms
+
+### Permissions
+- Only logged-in users can post comments
+- Only the comment author can edit or delete their comment
+
