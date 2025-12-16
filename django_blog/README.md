@@ -83,3 +83,12 @@ A comment system that allows users to interact with blog posts.
 - Only logged-in users can post comments
 - Only the comment author can edit or delete their comment
 
+
+## Tagging and Search Functionality
+
+- Posts can have multiple tags using django-taggit
+- Users can search posts by title, content, or tags
+- Search bar is available on all pages
+- Tags improve categorization and discoverability
+
+

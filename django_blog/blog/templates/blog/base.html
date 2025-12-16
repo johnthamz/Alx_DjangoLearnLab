@@ -6,18 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Blog{% endblock %}</title>
 
-    <!-- Correct static path -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog Posts</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'post-list' %}">Blog Posts</a></li>
+
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
             </ul>
+
+            <!-- Search form -->
+            <form method="get" action="{% url 'post-search' %}" style="display:inline; margin-left:20px;">
+                <input type="text" name="q" placeholder="Search posts..." required>
+                <button type="submit">Search</button>
+            </form>
         </nav>
     </header>
 
@@ -31,7 +43,7 @@
         <p>&copy; 2024 Django Blog</p>
     </footer>
 
-    <!-- Correct static path -->
+    <!-- JS -->
     <script src="{% static 'blog/js/scripts.js' %}"></script>
 </body>
 </html>
