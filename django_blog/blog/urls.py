@@ -20,6 +20,10 @@ from .views import (
 urlpatterns = [
     # Home page (optional, but keeps your project working)
     path("", PostListView.as_view(), name="home"),
+    
+    # URL for posts filtered by tag
+    path("tags/<slug:tag_slug>/", PostByTagListView.as_view(), name="posts-by-tag"),
+
 
     # Blog post CRUD (TASK 3 REQUIREMENT)
     path("post/", PostListView.as_view(), name="post-list"),
